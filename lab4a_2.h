@@ -3,7 +3,7 @@
  * Usefull constantes
  */
 #define POPULATION_MAX 10000
-#define TIME_STEP_MAX 3
+#define TIME_STEP_MAX 2
 
 typedef struct Rabbit {
     int id;
@@ -19,6 +19,8 @@ void display_rabbit(Rabbit_t);
 
 void display_array_rabbit(Rabbit_t[], int);
 
+void display_infos();
+
 void little_growing();
 
 void adult_aging();
@@ -32,5 +34,11 @@ int number_of_new_little();
 int new_little_sex();
 
 void adult_reproducing();
+
+int little_death();
+
+int adult_death(Rabbit_t);
+
+void little_and_adult_killing();
 
 int main(void);

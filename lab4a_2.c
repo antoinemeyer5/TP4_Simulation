@@ -116,6 +116,18 @@ void display_array_rabbit(Rabbit_t array[], int array_size)
 }
 
 /**
+ * @brief 
+ * 
+ */
+void display_infos()
+{
+    printf("Number little male: %d\n", little_male_size);
+    printf("Number little female: %d\n", little_female_size);
+    printf("Number adult male: %d\n", adult_male_size);
+    printf("Number adult female: %d\n", adult_female_size);
+}
+
+/**
  * @brief Little rabbit become adult rabbit
  */
 void little_growing()
@@ -311,6 +323,81 @@ void adult_reproducing()
 }
 
 /**
+ * @brief 
+ * 
+ * @return int 
+ */
+int little_death()
+{
+    int response = 1;
+    double random = genrand_real2();
+    if (random < 0.65)
+    {
+        response = 0;
+    }
+    return response;
+}
+
+/**
+ * @brief 
+ * 
+ * @return int 
+ */
+int adult_death(Rabbit_t rabbit){
+    int response = 1;
+    double random = genrand_real2();
+    double survival_rate = 0.40;
+    if(rabbit.age >= 10){
+        survival_rate = survival_rate + 0.10 * (rabbit.age-10);
+    }
+    if (random < survival_rate)
+    {
+        response = 0;
+    }
+    if(rabbit.age >= 15){
+        response = 0;
+        printf("\n### death of an old venerable rabbit ###\n");
+    }
+    return response;
+}
+
+/**
+ * @brief 
+ * 
+ */
+void little_and_adult_killing()
+{
+    // on parcours les jeunes et les adultes et on les tue
+    // jeune males
+    for(int i=0; i<little_male_size; i++){
+        if (little_death() == 0){
+            little_male_size--;
+        }
+    }
+
+    // jeunes femelles
+    for(int i=0; i<little_female_size; i++){
+        if (little_death() == 0){
+            little_female_size--;
+        }
+    }
+
+    // vieux males
+    for(int i=0; i<adult_male_size; i++){
+        if (adult_death(adult_male[i]) == 0){
+            adult_male_size--;
+        }
+    }
+
+    // vieilles femelles
+    for(int i=0; i<adult_female_size; i++){
+        if (adult_death(adult_female[i]) == 0){
+            adult_female_size--;
+        }
+    }
+}
+
+/**
  * @brief Main function who use code and display TP's result
  *
  * @return int
@@ -336,35 +423,34 @@ int main(void)
     for (int i = 0; i < TIME_STEP_MAX; i++)
     {
         printf("Year n°%d\n", time_step);
-        printf("n°X_[age]\n");
 
-        printf("Array of little male :\n");
-        display_array_rabbit(little_male, little_male_size);
-        printf("Array of little female :\n");
-        display_array_rabbit(little_female, little_female_size);
-        printf("Array of adult male :\n");
-        display_array_rabbit(adult_male, adult_male_size);
-        printf("Array of adult female :\n");
-        display_array_rabbit(adult_female, adult_female_size);
+        printf("=> Before reproducing <=\n");
+        display_infos();
 
         //// TOUTE LANNEE
         // ADULT REPRODUSING AND CREATE LITTLE RABBITS !!
         adult_reproducing();
 
+        printf("=> After reproducing <=\n");
+        display_infos();
+
         //// EN FIN DANNEE
-        // LITTLE RABBITS BECOME ADULT
-        little_growing();
-
-        // ADULT GET OLDER
-        adult_aging();
-
         // ADULT RABBITS MAY DIED
-        // on parcours les adultes et on les tue
-        
+        little_and_adult_killing();
+
+        printf("=> After death(ing) <=\n");
+        display_infos();
+
+        // OLDING
+        little_growing(); // LITTLE RABBITS BECOME ADULT
+        adult_aging(); // ADULT GET OLDER
+
+        printf("=> After growing and aging <=\n");
+        display_infos();
 
         // ..AND AGAIN
         time_step++;
-        printf("\n=================================\n");
+        printf("=================================\n");
     }
 
     return 0;
