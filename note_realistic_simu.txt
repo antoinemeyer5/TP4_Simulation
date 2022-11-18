@@ -1,0 +1,75 @@
+==============> V1 <==============
+
+time step => years
+
+female rabbit
+=> ~ between 4 to 8 litters (portées) per year ~ more chance to have 5, 6 or 7 litters
+=> n°litter : 	0	3	4	5	6	7	8	9
+				5%	10%	10%	20%	20%	20%	10%	5%
+		
+litter
+=> equal chance to have 3 to 6 kittens (baby rabbits)
+=> n° kitten : 3	4	5	6
+			25%	25%	25%	25%
+=> sex : male or female => random drawing (natural probability is 50/50)
+
+baby rabbit => become adult after 1 year
+
+probability of death :
+=> for little ==> 35% live, 65% to die
+=> for adult ==> 60% live, 40% to die
+==> 10 y.o => survival rate = survival rate - 10% per year
+==> 15 y.o => survival rate = 0%
+
+aging (vieillissement)
+
+==============> V2 <==============
+
+diseases & predators
+
+FAIRE CE TP EN LUA !!!!!!
+Comme ça je display des graphs et je refais du LUA !!!
+
+================= FONCTIONNEMENT V1 =================
+
+struct lapin :
+lapin {
+	adult?: boolean, (1:adult, 0:enfant)
+	reproduit?: boolean, (1:deja reproduit, 0:pas encore en couple)
+	age: int
+}
+
+listes :
+liste de bebe lapins male
+liste de bebe lapins femelles
+liste de lapins adultes males
+liste de lapins adultes femelles
+
+pas de temps : en année
+
+start : 
+[] => 0 petit male
+[] => 0 petite femelle
+["Paul"] => 1 adulte male
+["Sylvie"] => 1 adulte femelle
+
+dans l'ordre :
+
+GRANDISSEMENT
+1 - vidage liste de bebe lapins male => devienne adulte
+2 - vidage liste de bebe lapins femelles => devienne adulte
+
+REPRODUCTION
+3 - 1er male adulte avec 1ere femelle adulte
+	=> donne NOMBRE_PORTEE_HASARD
+	=> pour chaque portee
+		=> donne NOMBRE_PETITS_HASARD
+		=> pour chaque petit
+			=> choix du HASARD_SEX
+			=> ajout dans les listes petit_male et petit_femelle
+
+MORT 
+4 - 'nettoyage' liste des petits males et femelles avec proba MORT
+5 - 'nettoyage' liste des adultes avec proba MORT
+
+NOUVELLE ANNEE !
