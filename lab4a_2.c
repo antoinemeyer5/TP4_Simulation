@@ -66,7 +66,7 @@ void init_program()
     little_male_size = 0;
     little_female_size = 0;
     adult_male_size = 5;
-    adult_female_size = 3;
+    adult_female_size = 2;
 
     /*little_male[0] = create_rabbit(0, 0, 0);
     little_male[1] = create_rabbit(0, 0, 0);
@@ -81,8 +81,7 @@ void init_program()
     adult_male[4] = create_rabbit(13, 1);
 
     adult_female[0] = create_rabbit(5, 1);
-    adult_female[1] = create_rabbit(6, 1);
-    adult_female[2] = create_rabbit(8, 1);
+    adult_female[1] = create_rabbit(5, 1);
 }
 
 /**
@@ -225,26 +224,89 @@ int number_of_litters()
 /**
  * @brief
  *
+ * @return int
+ */
+int number_of_new_little()
+{
+    int response = 3;
+    double random = genrand_real2();
+    if (random < 0.25)
+    {
+        response = 3;
+    }
+    else if (random < 0.50)
+    {
+        response = 4;
+    }
+    else if (random < 0.75)
+    {
+        response = 5;
+    }
+    else
+    {
+        response = 6;
+    }
+    return response;
+}
+
+/**
+ * @brief
+ *
+ * @return int
+ */
+int new_little_sex()
+{
+    int response = 0;
+    double random = genrand_real2();
+    if (random >= 0.50)
+    {
+        response = 1;
+    }
+    return response;
+}
+
+/**
+ * @brief
+ *
  */
 void adult_reproducing()
 {
     int couple_number = number_of_couples();
-    couple_number = 20;
-    // pour chaque couple
+    int litter_number = 0;
+    int total_new_little = 0;
+
+    /* For each couple */
     for (int i = 0; i < couple_number; i++)
     {
-        // hasard le nombre de portée (entre 5 et 9 là)
-        int litter_number = number_of_litters();
-        printf("nombre de portées : %d\n", litter_number);
-        // pour chaque portee
+        litter_number = number_of_litters();
+        /* For each litter */
         for (int j = 0; j < litter_number; j++)
         {
-            
+            total_new_little = total_new_little + number_of_new_little();
         }
-        // hasard le nombre de petit (entre 3 et 6 là)
-        // pour chaque petit
-        // hasard le sexe (50/50)
-        // ajout a la liste des petits
+    }
+    /* While each new rabbits */
+    int new_one = 0;
+    while (new_one < total_new_little)
+    {
+        /* New female */
+        if (new_little_sex() == 0)
+        {
+            if (little_female_size < POPULATION_MAX)
+            {
+                little_female[little_female_size] = create_rabbit(0, 0);
+                little_female_size++;
+            }
+        }
+        else
+        {
+            if (little_male_size < POPULATION_MAX)
+            {
+                little_male[little_male_size] = create_rabbit(0, 0);
+                little_male_size++;
+            }
+        }
+        new_one++;
     }
 }
 
@@ -298,24 +360,12 @@ int main(void)
 
         // ADULT RABBITS MAY DIED
         // on parcours les adultes et on les tue
+        
 
         // ..AND AGAIN
         time_step++;
         printf("\n=================================\n");
     }
-
-    /*
-     * 2) More realistic population growth where you
-     * will have to make your own modeling choices and
-     * use the simulated distributions of lab #2 (different
-     * random variates). Use the C language (compare with
-     * an object-oriented language if you can and have time).
-     */
-
-    /*x_rand = genrand_real2();
-    printf("xrand: %10.8f\n", x_rand);
-
-    printf("time_step: %d\n", time_step);*/
 
     return 0;
 }
