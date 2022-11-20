@@ -1,11 +1,15 @@
+[init little male][init little female][init adult male][init adult female]
+[population_max]
+[TIME_STEP_MAX]
 [year]
-[before reproducing] [after reproducing] [after death] [after growing]
-[number little male] x 4
-[number little female] x 4
-[number adult male] x 4
-[number adult female] x 4
+X ---> [little male][little female][adult male][adult female]
+| [before reproducing]
+| [after reproducing]
+| [after death]
+v [after growing]
 
-
+10000000
+20
 0
 0   9   5   0
 0   9   5   0
