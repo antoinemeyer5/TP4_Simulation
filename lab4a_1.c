@@ -1,12 +1,10 @@
 /*
- * Antoine MEYER, ZZ2(F2) promo 24
+ * Antoine MEYER, ZZ2(F2) class 24
  * TP Lab # 4a - A more realistic population growth
- * Code créé le 7 novembre 2022 à Aubière
+ * Code created on November 7, 2022 in Aubière
  */
 
 #include <stdio.h>
-// #include <math.h>
-// #include "mt19937ar.h"
 
 /*
  * How to compile :
@@ -16,14 +14,14 @@
  */
 
 /*
- * Rôle de la fonction :
- * Calculer les valeurs d'une suite de Fibonacci
+ * Role of the function:
+ * Calculate the values of a Fibonacci sequence
  *
- * Rôle des paramètres d'entrées :
- * nb_month, nombre de pas dans la suite de Fibonacci
+ * Role of the input parameters:
+ * nb_month, number of steps in the Fibonacci sequence
  *
- * Résultat attendu :
- * Valeur dans la suite de Fibonacci
+ * Expected result:
+ * Value in the Fibonacci sequence
  */
 long leonardoPizzaModel(int nb_month)
 {
@@ -43,14 +41,14 @@ long leonardoPizzaModel(int nb_month)
 }
 
 /*
- * Rôle de la fonction :
- * Fonction principale qui utilise le reste du code pour
- * présenter les résultats du TP Lab # 4a - A more
+ * Function role:
+ * Main function that uses the rest of the code to
+ * present the results of TP Lab # 4a - A more
  * realistic population growth.
  *
- * Rôle des paramètres d'entrée : Aucun
+ * Role of input parameters: None
  *
- * Résultat attendu : Aucun
+ * Expected outcome: None
  */
 int main()
 {

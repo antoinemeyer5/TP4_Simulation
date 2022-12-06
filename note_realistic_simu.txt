@@ -27,8 +27,6 @@ aging (vieillissement)
 
 diseases & predators
 
-FAIRE CE TP EN LUA !!!!!!
-Comme ça je display des graphs et je refais du LUA !!!
 
 ================= FONCTIONNEMENT V1 =================
 

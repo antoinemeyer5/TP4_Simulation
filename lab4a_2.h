@@ -2,8 +2,9 @@
  * @brief
  * Usefull constantes
  */
-#define POPULATION_MAX 1000
-#define TIME_STEP_MAX 10
+#define POPULATION_MAX 10000000 // 10 millions
+#define TIME_STEP_MAX 30
+#define NUMBER_EXPERIENCE 35
 
 typedef struct Rabbit {
     int id;
@@ -40,5 +41,9 @@ int little_death();
 int adult_death(Rabbit_t);
 
 void little_and_adult_killing();
+
+void diseases_killing();
+
+void predators_killing();
 
 int main(void);
